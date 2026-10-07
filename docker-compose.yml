@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mysql:9.7
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_DATABASE}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/001-init.sql:/docker-entrypoint-initdb.d/001-init.sql
+    networks:
+      - web
+  web:
+    build: .
+    container_name: web
+    ports: 
+      - "80:80"
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www/html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - web
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: phpmyadmin
+    ports: 
+      - "8080:80"
+    environment: 
+      PMA_HOST: db
+    networks:
+      - web
+networks:
+  web:
+    name: web
+volumes:
+  mysql_data:
