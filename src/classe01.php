@@ -1,9 +1,14 @@
 <?php
     class Produto {
+        const IMPOSTO = 0.1;
+        private static int $total = 0;
+
         public function __construct(
             private string $nome,
             private float $preco
         ) {
+            self::$total++;
+
             $this->setNome($nome);
             $this->setPreco($preco);
         }
@@ -32,6 +37,9 @@
             $this->nome = $nome;
         }
 
+        public static function quantidade() : int {
+            return self::$total;
+        }
     }
 
     $camiseta = new Produto("Camiseta", 25.90);
@@ -45,4 +53,7 @@
     foreach ($produtos as $produto) {
         var_dump($produto);
     }
+
+    echo Produto::quantidade() . " produtos<br>";
+    echo "Imposto: " . Produto::IMPOSTO * 100 . "%<br>" 
 ?>
