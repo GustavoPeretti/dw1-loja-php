@@ -23,8 +23,4 @@
             return $this->estoque >= $quantidade;
         }
     }
-
-    $smartphone = new Produto(1, 'Smartphone', 3000, 5);
-
-    var_dump($smartphone);
 ?>

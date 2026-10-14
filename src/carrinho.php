@@ -1,5 +1,5 @@
 <?php
-    require "./produto.php";
+    require './produto.php';
 
     class Carrinho {
         private array $itens = [];
@@ -21,12 +21,4 @@
             return $total;
         }
     }
-
-    $carrinho = new Carrinho();
-
-    $carrinho->adicionar(new Produto(1, 'Smartphone', 3000, 5));
-    $carrinho->adicionar(new Produto(2, 'Computador', 5000, 5));
-
-    var_dump($carrinho);
-    echo "Total: R$ " . $carrinho->total();
 ?>

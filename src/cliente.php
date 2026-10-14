@@ -1,5 +1,5 @@
 <?php
-    require "./conta.php";
+    require './conta.php';
 
     class Cliente {
         private Conta $conta;
@@ -37,13 +37,4 @@
             return $this->conta;
         }
     }
-
-    echo "<br><br><br><br>";
-
-    $gustavo = new Cliente("Gustavo", "gustavo@gmail.com");
-
-    $gustavo->getConta()->depositar(5000);
-    $gustavo->getConta()->sacar(4999);
-
-    echo "Saldo de " . $gustavo->getNome() . ": R$ " . $gustavo->getConta()->getSaldo();
 ?>

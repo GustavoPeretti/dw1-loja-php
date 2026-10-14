@@ -30,11 +30,4 @@
             $this->saldo -= $valor;
         }
     }
-
-    $conta = new Conta();
-
-    $conta->depositar(5000);
-    $conta->sacar(4999);
-
-    echo "Saldo: R$ " . $conta->getSaldo();
 ?>
