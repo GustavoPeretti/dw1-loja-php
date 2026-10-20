@@ -1,5 +1,5 @@
 <?php
-    function dobrar(int $n = 0) : int {
+    function dobrar(int $n = 0): int {
         return $n * 2;
     }
 

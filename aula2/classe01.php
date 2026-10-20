@@ -17,27 +17,27 @@
             $this->preco -= $this->preco * $fator;
         }
 
-        public function getPreco() : float {
+        public function getPreco(): float {
             return $this->preco;
         }
 
-        public function setPreco(float $preco) : void {
+        public function setPreco(float $preco): void {
             if ($preco < 0) throw new InvalidArgumentException("O preço não pode ser negativo.");
 
             $this->preco = $preco;
         }
 
-        public function getNome() : string {
+        public function getNome(): string {
             return $this->nome;
         }
 
-        public function setNome(string $nome) : void {
+        public function setNome(string $nome): void {
             if (trim($nome) === '') throw new InvalidArgumentException("O nome não pode ser vazio.");
 
             $this->nome = $nome;
         }
 
-        public static function quantidade() : int {
+        public static function quantidade(): int {
             return self::$total;
         }
     }

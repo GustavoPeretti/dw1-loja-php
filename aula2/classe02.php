@@ -2,11 +2,11 @@
     class Animal {
         const TIPO = "Animal";
 
-        public function emitirSom() : string {
+        public function emitirSom(): string {
             return "[som genérico]";
         }
 
-        public static function identificar() : string {
+        public static function identificar(): string {
             return static::TIPO;
         }
     }
@@ -14,7 +14,7 @@
     class Cachorro extends Animal {
         const TIPO = "Cachorro";
 
-        public function emitirSom() : string {
+        public function emitirSom(): string {
             return parent::emitirSom() . "[latido]";
         }
     }

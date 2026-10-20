@@ -10,7 +10,7 @@
             return $this->saldo;
         }
 
-        public function depositar(float $valor) : void {
+        public function depositar(float $valor): void {
             if ($valor <= 0) {
                 throw new InvalidArgumentException("Valor deve ser positivo.");
             }
@@ -18,7 +18,7 @@
             $this->saldo += $valor;
         }
 
-        public function sacar(float $valor) : void {
+        public function sacar(float $valor): void {
             if ($valor <= 0) {
                 throw new InvalidArgumentException("Valor deve ser positivo.");
             }

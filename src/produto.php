@@ -1,26 +1,57 @@
 <?php
-    class Produto {
+    abstract class Produto {
         public function __construct(
-            private int $id,
-            private string $nome,
-            private float $preco,
-            private int $estoque
+            protected string $nome,
+            protected float $preco
         ) {}
 
-        public function getId(): int {
-            return $this->id;
+        abstract public function frete() : float;
+
+        public function descricao(): string {
+            return "{$this->nome}: R$ {$this->preco}";
         }
 
-        public function getNome(): string {
-            return $this->nome;
+    }
+
+    class ProdutoFisico extends Produto {
+        public function __construct(
+            string $nome,
+            float $preco,
+            private float $peso
+        ) {
+            parent::__construct($nome, $preco);
         }
 
-        public function getPreco(): float {
-            return $this->preco;
-        }
-
-        public function temEstoque(int $quantidade): bool {
-            return $this->estoque >= $quantidade;
+        public function frete(): float {
+            return $this->peso * 5;
         }
     }
+
+    class ProdutoDigital extends Produto {
+        public function __construct(
+            string $nome,
+            float $preco,
+            private string $link
+        ) {
+            parent::__construct($nome, $preco);
+        }
+
+        #[Override]
+        public function descricao(): string {
+            return parent::descricao() . " <a href=\"{$this->link}\">(download)</a>";
+        }
+
+        public function frete(): float {
+            return 0;
+        }
+    }
+
+    $t = new ProdutoFisico("Tênis", 249.9, 1.2);
+    echo $t->descricao();
+
+    echo "<br>";
+
+    $e = new ProdutoDigital("E-book", 249.9, 'https://gustavoo.com.br');
+    echo $e->descricao()
+
 ?>

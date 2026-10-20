@@ -4,8 +4,8 @@
 
     $carrinho = new Carrinho();
 
-    $carrinho->adicionar(new Produto(1, 'Smartphone', 3000, 5));
-    $carrinho->adicionar(new Produto(2, 'Computador', 5000, 5));
+    $carrinho->adicionar(new Produto('Smartphone', 3000));
+    $carrinho->adicionar(new Produto('Computador', 5000));
 
     var_dump($carrinho);
     echo "Total: R$ " . $carrinho->total();
