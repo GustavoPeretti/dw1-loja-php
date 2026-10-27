@@ -14,10 +14,13 @@ services:
   web:
     build: .
     container_name: web
-    ports: 
+    ports:
       - "80:80"
     depends_on:
       - db
+    environment:
+      DATABASE_DATABASE: ${DATABASE_DATABASE}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - ./src:/var/www/html
     extra_hosts:
