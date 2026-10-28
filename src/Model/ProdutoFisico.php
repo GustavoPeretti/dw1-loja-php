@@ -2,10 +2,8 @@
     namespace App\Model;
 
     use App\Model\Produto;
-    use Override;
 
     class ProdutoFisico extends Produto {
-        #[Override]
         public function __construct(
             int $id,
             string $nome,

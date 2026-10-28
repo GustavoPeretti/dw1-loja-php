@@ -1,9 +1,10 @@
 <?php
-    require __DIR__ . '/../autoload.php';
+  require __DIR__ . '/../autoload.php';
 
-    use App\Database\Conexao;
+  use App\Dao\ProdutoDao;
+  use App\Database\Conexao;
 
-    $produtos = Conexao::get()->query('SELECT * FROM produtos ORDER BY id DESC')->fetchAll();
+  $produtos = (new ProdutoDao(Conexao::get()))->listar();
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
@@ -23,13 +24,13 @@
   </tr>
   <?php foreach ($produtos as $p): ?>
     <tr>
-      <td><?= $p['id'] ?></td>
-      <td><?= htmlspecialchars($p['nome']) ?></td>
-      <td>R$ <?= number_format($p['preco'], 2, ',', '.') ?></td>
-      <td><?= $p['estoque'] ?></td>
+      <td><?= $p->getId() ?></td>
+      <td><?= htmlspecialchars($p->getNome()) ?></td>
+      <td>R$ <?= number_format($p->getPreco(), 2, ',', '.') ?></td>
+      <td><?= $p->getEstoque() ?></td>
       <td>
-        <a href="editar.php?id=<?= $p['id'] ?>">Editar</a>
-        <a href="excluir.php?id=<?= $p['id'] ?>" onclick="return confirm('Excluir?')">Excluir</a>
+        <a href="editar.php?id=<?= $p->getId() ?>">Editar</a>
+        <a href="excluir.php?id=<?= $p->getId() ?>" onclick="return confirm('Excluir?')">Excluir</a>
       </td>
     </tr>
   <?php endforeach; ?>

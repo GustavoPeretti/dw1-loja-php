@@ -13,5 +13,8 @@ CREATE TABLE produtos (
   estoque INT NOT NULL DEFAULT 0,
   categoria_id INT,
   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  tipo ENUM('fisico', 'digital') NOT NULL DEFAULT 'fisico',
+  peso DECIMAL(6, 3) NULL,
+  link VARCHAR(255) NULL,
   FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
