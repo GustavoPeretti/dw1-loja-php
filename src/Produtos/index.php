@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
 <main class="container">
+<?php require __DIR__ . '/../nav.php'; ?>
+
 <a href="novo.php">+ Novo produto</a>
 
 <table>
