@@ -9,6 +9,12 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./sql/001-init.sql:/docker-entrypoint-initdb.d/001-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h 127.0.0.1 -u root --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     networks:
       - web
   web:
@@ -17,7 +23,8 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DATABASE_DATABASE: ${DATABASE_DATABASE}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
